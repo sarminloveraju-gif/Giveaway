@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim 1000 Shiv Tokens | Exclusive Giveaway</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        
+        .header {
+            margin-bottom: 20px;
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ff9a00, #ff5e00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(255, 94, 0, 0.2);
+        }
+        
+        .header p {
+            color: #a0a0c0;
+            font-size: 1.1rem;
+        }
+        
+        .offer-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .token-amount {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            margin: 20px 0;
+            text-shadow: 0 5px 15px rgba(0, 219, 222, 0.2);
+        }
+        
+        .offer-details {
+            margin: 25px 0;
+        }
+        
+        .offer-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .offer-details ul {
+            list-style-type: none;
+        }
+        
+        .offer-details li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .offer-details li i {
+            color: #00dbde;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .claim-instructions {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 5px solid #ff9a00;
+        }
+        
+        .claim-instructions h3 {
+            color: #ff9a00;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .claim-instructions ol {
+            padding-left: 20px;
+        }
+        
+        .claim-instructions li {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+        
+        .claim-instructions strong {
+            color: #ff9a00;
+        }
+        
+        .claim-btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        #claimBtn {
+            background: linear-gradient(90deg, #ff9a00, #ff5e00);
+            border: none;
+            color: white;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(255, 94, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 250px;
+        }
+        
+        #claimBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 94, 0, 0.6);
+        }
+        
+        #claimBtn:active {
+            transform: scale(0.98);
+        }
+        
+        #claimBtn i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .click-counter {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #a0a0c0;
+        }
+        
+        .click-counter span {
+            color: #ff9a00;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        
+        .status-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+            text-align: center;
+            display: none;
+        }
+        
+        .success {
+            background-color: rgba(0, 200, 83, 0.2);
+            color: #4caf50;
+            border: 1px solid #4caf50;
+        }
+        
+        .info {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+            border: 1px solid #2196f3;
+        }
+        
+        .warning {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: #ff9800;
+            border: 1px solid #ff9800;
+        }
+        
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s ease;
+        }
+        
+        .image-container img:hover {
+            transform: scale(1.03);
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #a0a0c0;
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-column: 1 / -1;
+        }
+        
+        .timer {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        .timer span {
+            color: #ff9a00;
+            font-weight: 700;
+        }
+        
+        .ads-notice {
+            font-size: 0.9rem;
+            color: #a0a0c0;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .binance-redirect {
+            background: rgba(240, 185, 11, 0.1);
+            border: 2px solid #f0b90b;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .binance-redirect h4 {
+            color: #f0b90b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .binance-redirect h4 i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-gift"></i> EXCLUSIVE GIVEAWAY</h1>
+            <p>Limited Time Offer - Claim Your Free Shiv Tokens Now!</p>
+        </div>
+        
+        <div class="offer-card">
+            <h2>SPECIAL OFFER</h2>
+            <div class="token-amount">1000 SHIV</div>
+            <p>Shiv Tokens are the next generation of cryptocurrency designed for fast transactions and low fees.</p>
+            
+            <div class="offer-details">
+                <h3>What You'll Get:</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 1000 Shiv Tokens ($50 equivalent)</li>
+                    <li><i class="fas fa-check-circle"></i> Instant withdrawal availability</li>
+                    <li><i class="fas fa-check-circle"></i> No hidden fees or charges</li>
+                    <li><i class="fas fa-check-circle"></i> Lifetime access to Shiv ecosystem</li>
+                    <li><i class="fas fa-check-circle"></i> Exclusive future airdrop eligibility</li>
+                </ul>
+            </div>
+            
+            <div class="claim-instructions">
+                <h3><i class="fas fa-info-circle"></i> How to Claim:</h3>
+                <ol>
+                    <li>Click the <strong>"CLAIM NOW"</strong> button below.</li>
+                    <li>First <strong>two clicks</strong> will open ad pages in new tabs (please keep them open for 5 seconds).</li>
+                    <li>On the <strong>third click</strong>, you will be redirected to Binance RedPacket to claim your 1000 Shiv Tokens.</li>
+                    <li>Complete the RedPacket claim process on Binance to receive your tokens.</li>
+                </ol>
+                <div class="ads-notice">
+                    <i class="fas fa-exclamation-circle"></i> Note: Ad pages help us keep this giveaway free. Thank you for your support!
+                </div>
+            </div>
+            
+            <div class="claim-btn-container">
+                <button id="claimBtn">
+                    <i class="fas fa-gem"></i> CLAIM NOW
+                </button>
+                <div class="click-counter">
+                    Clicks needed: <span id="clicksNeeded">3</span>
+                </div>
+                <div class="timer">
+                    <i class="fas fa-clock"></i> Offer expires in: <span id="countdown">15:00</span>
+                </div>
+                
+                <div id="statusMessage" class="status-message"></div>
+                
+                <div id="binanceRedirect" class="binance-redirect" style="display: none;">
+                    <h4><i class="fas fa-external-link-alt"></i> Redirecting to Binance RedPacket...</h4>
+                    <p>You will be redirected to Binance to claim your tokens in <span id="redirectCountdown">5</span> seconds.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1620336655055-bd87c5d1d73f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Crypto Giveaway">
+        </div>
+        
+        <div class="footer">
+            <p>This giveaway is sponsored by Shiv Token Foundation. No purchase necessary. Limit one claim per person.</p>
+            <p>By claiming tokens, you agree to our Terms of Service and Privacy Policy.</p>
+            <p>© 2023 Shiv Token Giveaway. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const claimBtn = document.getElementById('claimBtn');
+            const clicksNeededElement = document.getElementById('clicksNeeded');
+            const statusMessage = document.getElementById('statusMessage');
+            const countdownElement = document.getElementById('countdown');
+            const binanceRedirect = document.getElementById('binanceRedirect');
+            const redirectCountdownElement = document.getElementById('redirectCountdown');
+            
+            let clickCount = 0;
+            const totalClicksNeeded = 3;
+            let claimed = false;
+            
+            // Set countdown timer (15 minutes)
+            let countdownTime = 15 * 60; // 15 minutes in seconds
+            
+            // Your actual Binance RedPacket link - REPLACE THIS WITH YOUR ACTUAL LINK
+            const binanceRedPacketLink = "https://www.binance.com/en/redpacket/portal?ref=YOUR_REFERRAL_CODE";
+            
+            // Your ad links - UPDATED WITH YOUR PROVIDED LINKS
+            const adLinks = [
+                "https://www.effectivegatecpm.com/q63edsjc?key=be8f780fd85340da87dbfedc99d740c2",
+                "https://www.effectivegatecpm.com/wfm1vcdmcd?key=4d1d45ac6ebf6e241b694c71d7497d52"
+            ];
+            
+            function updateCountdown() {
+                const minutes = Math.floor(countdownTime / 60);
+                const seconds = countdownTime % 60;
+                
+                countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (countdownTime <= 0) {
+                    clearInterval(countdownInterval);
+                    claimBtn.disabled = true;
+                    claimBtn.innerHTML = '<i class="fas fa-clock"></i> OFFER EXPIRED';
+                    claimBtn.style.background = 'linear-gradient(90deg, #777, #999)';
+                    statusMessage.textContent = "Sorry, this giveaway offer has expired!";
+                    statusMessage.className = "status-message warning";
+                    statusMessage.style.display = "block";
+                }
+                
+                countdownTime--;
+            }
+            
+            // Update countdown every second
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown(); // Initial call
+            
+            claimBtn.addEventListener('click', function() {
+                if (claimed) return;
+                
+                clickCount++;
+                clicksNeededElement.textContent = totalClicksNeeded - clickCount;
+                
+                // First two clicks open ad pages
+                if (clickCount <= 2) {
+                    // Show info message
+                    statusMessage.textContent = `Please view the ad page for 5 seconds. Click ${clickCount} of 2.`;
+                    statusMessage.className = "status-message info";
+                    statusMessage.style.display = "block";
+                    
+                    // Open ad link in new tab
+                    setTimeout(() => {
+                        window.open(adLinks[clickCount-1], '_blank', 'noopener,noreferrer');
+                    }, 300);
+                    
+                    // Update button text
+                    claimBtn.innerHTML = `<i class="fas fa-external-link-alt"></i> VIEW AD (${clickCount}/2)`;
+                    
+                    // Change button color for first two clicks
+                    if (clickCount === 1) {
+                        claimBtn.style.background = 'linear-gradient(90deg, #2196F3, #21CBF3)';
+                    } else if (clickCount === 2) {
+                        claimBtn.style.background = 'linear-gradient(90deg, #9C27B0, #673AB7)';
+                    }
+                }
+                
+                // Third click redirects to Binance RedPacket
+                if (clickCount === 3) {
+                    claimed = true;
+                    
+                    // Show success message
+                    statusMessage.textContent = "🎉 Congratulations! You are now being redirected to Binance RedPacket to claim your 1000 Shiv Tokens!";
+                    statusMessage.className = "status-message success";
+                    statusMessage.style.display = "block";
+                    
+                    // Show Binance redirect box
+                    binanceRedirect.style.display = "block";
+                    
+                    // Update button
+                    claimBtn.innerHTML = '<i class="fas fa-check-circle"></i> REDIRECTING...';
+                    claimBtn.style.background = 'linear-gradient(90deg, #F0B90B, #F0B90B)';
+                    claimBtn.disabled = true;
+                    
+                    // Update click counter
+                    clicksNeededElement.textContent = "0";
+                    clicksNeededElement.style.color = "#F0B90B";
+                    
+                    // Confetti effect
+                    createConfetti();
+                    
+                    // Countdown before redirect
+                    let redirectDelay = 5;
+                    const redirectInterval = setInterval(() => {
+                        redirectCountdownElement.textContent = redirectDelay;
+                        redirectDelay--;
+                        
+                        if (redirectDelay < 0) {
+                            clearInterval(redirectInterval);
+                            // Redirect to Binance RedPacket
+                            window.open(binanceRedPacketLink, '_blank', 'noopener,noreferrer');
+                            
+                            // Show final message
+                            statusMessage.innerHTML = "✅ Redirection successful! Check your new tab for Binance RedPacket.<br>If the page didn't open, <a href='" + binanceRedPacketLink + "' target='_blank' style='color: #F0B90B; text-decoration: underline;'>click here</a>.";
+                            statusMessage.className = "status-message success";
+                            
+                            claimBtn.innerHTML = '<i class="fab fa-binance"></i> BINANCE REDPACKET';
+                            binanceRedirect.innerHTML = "<h4><i class='fab fa-binance'></i> Redirection Complete!</h4><p>You should now be on the Binance RedPacket page. Complete the claim process there.</p>";
+                        }
+                    }, 1000);
+                }
+            });
+            
+            // Simple confetti effect
+            function createConfetti() {
+                const colors = ['#ff9a00', '#ff5e00', '#00dbde', '#fc00ff', '#4CAF50', '#2196F3', '#F0B90B'];
+                
+                for (let i = 0; i < 150; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-20px';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.opacity = '0.9';
+                    document.body.appendChild(confetti);
+                    
+                    // Animation
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight + 20}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                    ], {
+                        duration: 2000 + Math.random() * 3000,
+                        easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                    });
+                    
+                    // Remove confetti after animation
+                    animation.onfinish = () => {
+                        confetti.remove();
+                    };
+                }
+            }
+            
+            // Add Binance logo to the button on hover (for visual effect)
+            claimBtn.addEventListener('mouseenter', function() {
+                if (clickCount === 2 && !claimed) {
+                    claimBtn.innerHTML = `<i class="fab fa-binance"></i> CLAIM ON BINANCE`;
+                }
+            });
+            
+            claimBtn.addEventListener('mouseleave', function() {
+                if (clickCount === 2 && !claimed) {
+                    claimBtn.innerHTML = `<i class="fas fa-external-link-alt"></i> VIEW AD (2/2)`;
+                } else if (clickCount === 1 && !claimed) {
+                    claimBtn.innerHTML = `<i class="fas fa-external-link-alt"></i> VIEW AD (1/2)`;
+                } else if (!claimed) {
+                    claimBtn.innerHTML = `<i class="fas fa-gem"></i> CLAIM NOW`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
